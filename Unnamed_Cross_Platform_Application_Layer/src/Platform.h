@@ -64,6 +64,10 @@ typedef double F64;
 #define PlatformDebugPrint(str) {}
 #define PlatformDebugBreak() {}
 
+#define LoadLib {}
+
+#define PlatfromErrorBox(title, str) {}
+
 #ifdef AVRO_DEBUG
 #define CHECK_NAN 1
 #define Assert(expr, strmessage) if(expr){} \
@@ -90,7 +94,7 @@ typedef double F64;
 #define Assert(expr, strmessage){}
 #endif
 
-#define INVALID_CODE_PATH Assert(0, "Invalid Code Path")
+#define INVALID_CODE_PATH Assert(false, "Invalid Code Path")
 #define INVALID_DEFAULT_CASE default: {INVALID_CODE_PATH;} break
 
 #define KiB(value) ((value)*1024LL)
@@ -105,14 +109,9 @@ typedef double F64;
 #define Align8(value) ((value + 7) & ~7)
 #define Align16(value) ((value + 15) & ~15)
 
-//INLINEFORCE DLLEXPORT U32 TruncU64(U64 value) {
-//	Assert(value <= 0xFFFFFFFF, "Invalid U32 value for truncation");
-//	return (U32)value;
-//}
+INLINEFORCE DLLEXPORT U32 TruncU64(U64 value);
 
-//INLINEFORCE DLLEXPORT F32 SecondsElapsed(U64 begin, U64 end, U64 perfFrequency) {
-//	return (F32)(end - begin) / (F32)perfFrequency;
-//}
+INLINEFORCE DLLEXPORT F32 SecondsElapsed(U64 begin, U64 end, U64 perfFrequency);
 
 glob INLINEFORCE B32 IsNaN(float f);
 glob INLINEFORCE B32 IsFinite(float f);
@@ -163,13 +162,16 @@ struct DLLEXPORT PlatformMemory {
 	void* transientStorage;
 };
 
-//INLINEFORCE Gamepad* GetGamepad(InputBuffer* input, U32 gamepadIndex) {
-	//Assert(((gamepadIndex < sizeofArr(input->gamepads) && (gamepadIndex >= 0)), "Invalid gamepad index");
-
-//	return &(input->gamepads[gamepadIndex]);
-//}
+INLINEFORCE Gamepad* GetGamepad(InputBuffer* input, U32 gamepadIndex);
 
 
 
+/************************************************************************/
+/* Platform defined functions                                           */
+/************************************************************************/
+
+
+
+DLLEXPORT B32 CreatePlatformWindow();
 
 #endif

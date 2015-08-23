@@ -9,5 +9,10 @@ cmake -G "Visual Studio 14 Win64" ../
 echo.
 echo.
 echo Solution generated in /VS-2015x64
-pause
+cd VS-2015x64
+for /r %%x in (*.sln) do (
+echo Opening %%x
+"%%x"
+)
+delay 2000
 exit

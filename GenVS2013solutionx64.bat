@@ -10,7 +10,9 @@ echo.
 echo.
 echo Solution generated in /VS-2013x64
 cd VS-2013x64
-echo Opening solution
-*.sln
-pause
+for /r %%x in (*.sln) do (
+echo Opening %%x
+"%%x"
+)
+delay 2000
 exit

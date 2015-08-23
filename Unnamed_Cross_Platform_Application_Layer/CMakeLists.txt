@@ -43,6 +43,7 @@ file(GLOB_RECURSE SRCS
 		${UCPAL_DIR}/src/*.cpp
 		${UCPAL_DIR}/src/*.cc
 		${UCPAL_DIR}/src/*.cxx
+		${UCPAL_DIR}/src/*.inl
 )
 
 find_package(OpenGL REQUIRED)

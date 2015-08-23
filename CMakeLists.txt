@@ -68,6 +68,7 @@ file(GLOB_RECURSE SRCS
 		${Unnamed_Game_SOURCE_DIR}/src/*.cpp
 		${Unnamed_Game_SOURCE_DIR}/src/*.cc
 		${Unnamed_Game_SOURCE_DIR}/src/*.cxx
+		${Unnamed_Game_SOURCE_DIR}/src/*.inl
 )
 
 include_directories(

@@ -46,6 +46,7 @@ file(GLOB_RECURSE SRCS
 		${ENG_DIR}/src/*.cpp
 		${ENG_DIR}/src/*.cc
 		${ENG_DIR}/src/*.cxx
+		${ENG_DIR}/src/*.inl
 )
 
 include_directories(
@@ -60,8 +61,8 @@ include_directories(
 )
 
 #adds the library
-add_library(ENG SHARED ${HDRS} ${SRCS})
-set_target_properties(ENG PROPERTIES LINKER_LANGUAGE CXX)
+add_library(ENG STATIC ${HDRS} ${SRCS})
+#set_target_properties(ENG PROPERTIES LINKER_LANGUAGE CXX)
 
 set_target_properties(ENG PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${Unnamed_Game_SOURCE_DIR}/bin")
 set_target_properties(ENG PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG "${Unnamed_Game_SOURCE_DIR}/bin/$(Platform)/debug")
@@ -88,4 +89,4 @@ set_target_properties(ENG PROPERTIES INTERMEDIATE_DIRECTORY_PRODUCTION "${ENG_TM
 #links cross platform application layer
 target_link_libraries(ENG UCPAL)
 
-install (TARGETS ENG RUNTIME DESTINATION "${Unnamed_Game_SOURCE_DIR}/bin/$(Platform)/$(Configuration)")
+#install (TARGETS ENG RUNTIME DESTINATION "${Unnamed_Game_SOURCE_DIR}/bin/$(Platform)/$(Configuration)")
