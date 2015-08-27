@@ -1,7 +1,9 @@
 #ifndef UCPAL_PLATFORM_H
 #define UCPAL_PLATFORM_H
 
-//TODO: make this use our atomic types
+#ifdef __cplusplus
+//extern "C" {
+#endif
 
 #ifdef _WIN32 //TODO: declare this in cmake
 #define W32
@@ -60,13 +62,15 @@ typedef double F64;
 #define VECTOR_PARALLEL_THRESHOLD (0.02f)
 #define RAD_TO_DEG (57.2957795f)
 #define DEG_TO_RAD (0.0174532925f)
+#define True (0xFFFFFFFF)
+#define False (0x00000000)
 
 #define PlatformDebugPrint(str) {}
 #define PlatformDebugBreak() {}
 
 #define LoadLib {}
 
-#define PlatfromErrorBox(title, str) {}
+#define PlatformErrorBox(title, str) {}
 
 #ifdef AVRO_DEBUG
 #define CHECK_NAN 1
@@ -109,69 +113,89 @@ typedef double F64;
 #define Align8(value) ((value + 7) & ~7)
 #define Align16(value) ((value + 15) & ~15)
 
-INLINEFORCE DLLEXPORT U32 TruncU64(U64 value);
+	INLINEFORCE DLLEXPORT U32 TruncU64(U64 value);
 
-INLINEFORCE DLLEXPORT F32 SecondsElapsed(U64 begin, U64 end, U64 perfFrequency);
+	INLINEFORCE DLLEXPORT F32 SecondsElapsed(U64 begin, U64 end, U64 perfFrequency);
 
-glob INLINEFORCE B32 IsNaN(float f);
-glob INLINEFORCE B32 IsFinite(float f);
+	glob INLINEFORCE B32 IsNaN(float f);
+	glob INLINEFORCE B32 IsFinite(float f);
 
-struct WindowDimensions {
-	U32 width;
-	U32 height;
-};
+	struct WindowDimensions {
+		U32 width;
+		U32 height;
+	};
 
-struct DLLEXPORT GraphicsBuffer {
-	//Pixels are always 32-bits wide, BB GG RR XX
-	void* buffer;
-	U32 width;
-	U32 height;
-};
+	struct DLLEXPORT GraphicsBuffer {
+		//Pixels are always 32-bits wide, BB GG RR XX
+		U32* buffer;
+		U32 width;
+		U32 height;
+	};
 
 #define NUM_KEYS 256
 
-struct DLLEXPORT AudioBuffer {
-	U32 sampleHz;
-	U32 sampleCount;
-	U16* buffer;
-};
+	struct DLLEXPORT AudioBuffer {
+		U32 sampleHz;
+		U32 sampleCount;
+		U16* buffer;
+	};
 
-struct DLLEXPORT Gamepad {
-	F32 lx;
-	F32 ly;
-	F32 rx;
-	F32 ry;
-	F32 lt;
-	F32 rt;
-	F32 lv;
-	F32 rv;
-	U16 buttons;
-	U16 inputType;
-};
+	struct DLLEXPORT Gamepad {
+		F32 lx;
+		F32 ly;
+		F32 rx;
+		F32 ry;
+		F32 lt;
+		F32 rt;
+		F32 lv;
+		F32 rv;
+		U16 buttons;
+		U16 inputType;
+	};
 
-struct DLLEXPORT InputBuffer {
-	U8 keys[NUM_KEYS];
-	U8 prevKeys[NUM_KEYS];
-	Gamepad gamepads[4];
-};
+	struct DLLEXPORT InputBuffer {
+		U8 keys[NUM_KEYS];
+		U8 prevKeys[NUM_KEYS];
+		Gamepad gamepads[4];
+	};
 
-struct DLLEXPORT PlatformMemory {
-	U64 permanentStorageSize;
-	void* permanentStorage;
-	U64 transientStorageSize;
-	void* transientStorage;
-};
+	struct DLLEXPORT RuntimeMemory {
+		U64 permanentStorageSize;
+		void* permanentStorage;
+		U64 transientStorageSize;
+		void* transientStorage;
+	};
 
-INLINEFORCE Gamepad* GetGamepad(InputBuffer* input, U32 gamepadIndex);
-
-
-
-/************************************************************************/
-/* Platform defined functions                                           */
-/************************************************************************/
+	INLINEFORCE Gamepad* GetGamepad(InputBuffer* input, U32 gamepadIndex);
 
 
+	/************************************************************************/
+	/* Platform defined functions                                           */
+	/************************************************************************/
 
-DLLEXPORT B32 CreatePlatformWindow();
+	DLLEXPORT B32 CreatePlatformWindow();
+
+
+
+	/************************************************************************/
+	/* Memory functions                                                     */
+	/************************************************************************/
+
+	DLLEXPORT B32 InitializeRuntimeMemory(RuntimeMemory* runtimeMemory);
+
+	DLLEXPORT void* PAlloc(U64 sizeBytes, B32 zeroMem = True);
+
+	DLLEXPORT U64 PFree(void* memToFree, B32 zeroMem = True); //Returns number of bytes freed
+
+	DLLEXPORT void* TAlloc(U64 sizeBytes, B32 zeroMem = True);
+
+	DLLEXPORT U64 TFree(void* memToFree, B32 zeroMem = True); //Returns number of bytes freed
+
+	DLLEXPORT void TerminateRuntimeMemory(RuntimeMemory* runtimeMemory);
+
+
+#ifdef __cplusplus
+//} //extern "C"
+#endif
 
 #endif

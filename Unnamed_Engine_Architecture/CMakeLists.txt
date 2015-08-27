@@ -29,7 +29,7 @@ set(CMAKE_SHARED_LINKER_FLAGS_PROFILE "/debug /INCREMENTAL")
 set(CMAKE_SHARED_LINKER_FLAGS_RELEASE "/INCREMENTAL:NO")
 set(CMAKE_SHARED_LINKER_FLAGS_PRODUCTION "/INCREMENTAL:NO")
 
-set(ENG_DIR ${Unnamed_Game_SOURCE_DIR}/Unnamed_Engine_Architecture)
+set(ENG_DIR ${Unit_Tests_SOURCE_DIR}/Unnamed_Engine_Architecture)
 set(ENG_BIN ${ENG_DIR}/bin)
 set(ENG_TMP ${ENG_DIR}/tmp)
 
@@ -54,21 +54,21 @@ include_directories(
 	${ENG_DIR}/src
 	${ENG_DIR}/headers
 	${ENG_DIR}/sources
-	${Unnamed_Game_SOURCE_DIR}/Unnamed_Cross_Platform_Application_Layer/inc
-	${Unnamed_Game_SOURCE_DIR}/Unnamed_Cross_Platform_Application_Layer/src
-	${Unnamed_Game_SOURCE_DIR}/Unnamed_Cross_Platform_Application_Layer/headers
-	${Unnamed_Game_SOURCE_DIR}/Unnamed_Cross_Platform_Application_Layer/sources
+	${Unit_Tests_SOURCE_DIR}/Unnamed_Cross_Platform_Application_Layer/inc
+	${Unit_Tests_SOURCE_DIR}/Unnamed_Cross_Platform_Application_Layer/src
+	${Unit_Tests_SOURCE_DIR}/Unnamed_Cross_Platform_Application_Layer/headers
+	${Unit_Tests_SOURCE_DIR}/Unnamed_Cross_Platform_Application_Layer/sources
 )
 
 #adds the library
 add_library(ENG STATIC ${HDRS} ${SRCS})
-#set_target_properties(ENG PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(ENG PROPERTIES LINKER_LANGUAGE CXX)
 
-set_target_properties(ENG PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${Unnamed_Game_SOURCE_DIR}/bin")
-set_target_properties(ENG PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG "${Unnamed_Game_SOURCE_DIR}/bin/$(Platform)/debug")
-set_target_properties(ENG PROPERTIES RUNTIME_OUTPUT_DIRECTORY_PROFILE "${Unnamed_Game_SOURCE_DIR}/bin/$(Platform)/profile")
-set_target_properties(ENG PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE "${Unnamed_Game_SOURCE_DIR}/bin/$(Platform)/release")
-set_target_properties(ENG PROPERTIES RUNTIME_OUTPUT_DIRECTORY_PRODUCTION "${Unnamed_Game_SOURCE_DIR}/bin/$(Platform)/production")
+set_target_properties(ENG PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${Unit_Tests_SOURCE_DIR}/bin")
+set_target_properties(ENG PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG "${Unit_Tests_SOURCE_DIR}/bin/$(Platform)/debug")
+set_target_properties(ENG PROPERTIES RUNTIME_OUTPUT_DIRECTORY_PROFILE "${Unit_Tests_SOURCE_DIR}/bin/$(Platform)/profile")
+set_target_properties(ENG PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE "${Unit_Tests_SOURCE_DIR}/bin/$(Platform)/release")
+set_target_properties(ENG PROPERTIES RUNTIME_OUTPUT_DIRECTORY_PRODUCTION "${Unit_Tests_SOURCE_DIR}/bin/$(Platform)/production")
 set_target_properties(ENG PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${ENG_BIN}")
 set_target_properties(ENG PROPERTIES LIBRARY_OUTPUT_DIRECTORY_DEBUG "${ENG_BIN}/$(Platform)/debug")
 set_target_properties(ENG PROPERTIES LIBRARY_OUTPUT_DIRECTORY_PROFILE "${ENG_BIN}/$(Platform)/profile")
@@ -89,4 +89,4 @@ set_target_properties(ENG PROPERTIES INTERMEDIATE_DIRECTORY_PRODUCTION "${ENG_TM
 #links cross platform application layer
 target_link_libraries(ENG UCPAL)
 
-#install (TARGETS ENG RUNTIME DESTINATION "${Unnamed_Game_SOURCE_DIR}/bin/$(Platform)/$(Configuration)")
+#install (TARGETS ENG RUNTIME DESTINATION "${Unit_Tests_SOURCE_DIR}/bin/$(Platform)/$(Configuration)")

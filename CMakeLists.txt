@@ -19,7 +19,7 @@ MACRO(ADD_MSVC_PRECOMPILED_HEADER PrecompiledHeader PrecompiledSource SourcesVar
   ENDIF(MSVC)
 ENDMACRO(ADD_MSVC_PRECOMPILED_HEADER)
 
-project(Unnamed_Game)
+project(Unit_Tests)
 
 set(warnings "/W3 /WX")
 	
@@ -55,65 +55,65 @@ add_definitions(${warnings})
 add_subdirectory(Unnamed_Engine_Architecture)
 add_subdirectory(Unnamed_Cross_Platform_Application_Layer)
 
-#loads Unnamed_Game headers
+#loads Unit_Tests headers
 file(GLOB_RECURSE HDRS 
-		${Unnamed_Game_SOURCE_DIR}/src/*.h
-		${Unnamed_Game_SOURCE_DIR}/src/*.hxx
-		${Unnamed_Game_SOURCE_DIR}/src/*.hpp
+		${Unit_Tests_SOURCE_DIR}/src/*.h
+		${Unit_Tests_SOURCE_DIR}/src/*.hxx
+		${Unit_Tests_SOURCE_DIR}/src/*.hpp
 )
 
-#loads Unnamed_Game source files
+#loads Unit_Tests source files
 file(GLOB_RECURSE SRCS 
-		${Unnamed_Game_SOURCE_DIR}/src/*.c
-		${Unnamed_Game_SOURCE_DIR}/src/*.cpp
-		${Unnamed_Game_SOURCE_DIR}/src/*.cc
-		${Unnamed_Game_SOURCE_DIR}/src/*.cxx
-		${Unnamed_Game_SOURCE_DIR}/src/*.inl
+		${Unit_Tests_SOURCE_DIR}/src/*.c
+		${Unit_Tests_SOURCE_DIR}/src/*.cpp
+		${Unit_Tests_SOURCE_DIR}/src/*.cc
+		${Unit_Tests_SOURCE_DIR}/src/*.cxx
+		${Unit_Tests_SOURCE_DIR}/src/*.inl
 )
 
 include_directories(
-	${Unnamed_Game_SOURCE_DIR}/inc
-	${Unnamed_Game_SOURCE_DIR}/src
-	${Unnamed_Game_SOURCE_DIR}/headers
-	${Unnamed_Game_SOURCE_DIR}/sources
-	${Unnamed_Game_SOURCE_DIR}/Unnamed_Cross_Platform_Application_Layer/inc
-	${Unnamed_Game_SOURCE_DIR}/Unnamed_Cross_Platform_Application_Layer/src
-	${Unnamed_Game_SOURCE_DIR}/Unnamed_Cross_Platform_Application_Layer/headers
-	${Unnamed_Game_SOURCE_DIR}/Unnamed_Cross_Platform_Application_Layer/sources
-	${Unnamed_Game_SOURCE_DIR}/Unnamed_Engine_Architecture/inc
-	${Unnamed_Game_SOURCE_DIR}/Unnamed_Engine_Architecture/src
-	${Unnamed_Game_SOURCE_DIR}/Unnamed_Engine_Architecture/headers
-	${Unnamed_Game_SOURCE_DIR}/Unnamed_Engine_Architecture/sources
+	${Unit_Tests_SOURCE_DIR}/inc
+	${Unit_Tests_SOURCE_DIR}/src
+	${Unit_Tests_SOURCE_DIR}/headers
+	${Unit_Tests_SOURCE_DIR}/sources
+	${Unit_Tests_SOURCE_DIR}/Unnamed_Cross_Platform_Application_Layer/inc
+	${Unit_Tests_SOURCE_DIR}/Unnamed_Cross_Platform_Application_Layer/src
+	${Unit_Tests_SOURCE_DIR}/Unnamed_Cross_Platform_Application_Layer/headers
+	${Unit_Tests_SOURCE_DIR}/Unnamed_Cross_Platform_Application_Layer/sources
+	${Unit_Tests_SOURCE_DIR}/Unnamed_Engine_Architecture/inc
+	${Unit_Tests_SOURCE_DIR}/Unnamed_Engine_Architecture/src
+	${Unit_Tests_SOURCE_DIR}/Unnamed_Engine_Architecture/headers
+	${Unit_Tests_SOURCE_DIR}/Unnamed_Engine_Architecture/sources
 )
 
-set(Unnamed_Game_BIN ${Unnamed_Game_SOURCE_DIR}/bin)
-set(Unnamed_Game_TMP ${Unnamed_Game_SOURCE_DIR}/tmp)
+set(Unit_Tests_BIN ${Unit_Tests_SOURCE_DIR}/bin)
+set(Unit_Tests_TMP ${Unit_Tests_SOURCE_DIR}/tmp)
 
-#adds Unnamed_Game executable
-add_executable (Unnamed_Game ${HDRS} ${SRCS})
-set_target_properties(Unnamed_Game PROPERTIES LINKER_LANGUAGE CXX)
+#adds Unit_Tests executable
+add_executable (Unit_Tests ${HDRS} ${SRCS})
+set_target_properties(Unit_Tests PROPERTIES LINKER_LANGUAGE CXX)
 
-set_target_properties(Unnamed_Game PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${Unnamed_Game_BIN}")
-set_target_properties(Unnamed_Game PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG "${Unnamed_Game_BIN}/$(Platform)/debug")
-set_target_properties(Unnamed_Game PROPERTIES RUNTIME_OUTPUT_DIRECTORY_PROFILE "${Unnamed_Game_BIN}/$(Platform)/profile")
-set_target_properties(Unnamed_Game PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE "${Unnamed_Game_BIN}/$(Platform)/release")
-set_target_properties(Unnamed_Game PROPERTIES RUNTIME_OUTPUT_DIRECTORY_PRODUCTION "${Unnamed_Game_BIN}/$(Platform)/production")
-set_target_properties(Unnamed_Game PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${Unnamed_Game_BIN}")
-set_target_properties(Unnamed_Game PROPERTIES LIBRARY_OUTPUT_DIRECTORY_DEBUG "${Unnamed_Game_BIN}/$(Platform)/debug")
-set_target_properties(Unnamed_Game PROPERTIES LIBRARY_OUTPUT_DIRECTORY_PROFILE "${Unnamed_Game_BIN}/$(Platform)/profile")
-set_target_properties(Unnamed_Game PROPERTIES LIBRARY_OUTPUT_DIRECTORY_RELEASE "${Unnamed_Game_BIN}/$(Platform)/release")
-set_target_properties(Unnamed_Game PROPERTIES LIBRARY_OUTPUT_DIRECTORY_PRODUCTION "${Unnamed_Game_BIN}/$(Platform)/production")
-set_target_properties(Unnamed_Game PROPERTIES ARCHIVE_OUTPUT_DIRECTORY "${Unnamed_Game_BIN}")
-set_target_properties(Unnamed_Game PROPERTIES ARCHIVE_OUTPUT_DIRECTORY_DEBUG "${Unnamed_Game_BIN}/$(Platform)/debug")
-set_target_properties(Unnamed_Game PROPERTIES ARCHIVE_OUTPUT_DIRECTORY_PROFILE "${Unnamed_Game_BIN}/$(Platform)/profile")
-set_target_properties(Unnamed_Game PROPERTIES ARCHIVE_OUTPUT_DIRECTORY_RELEASE "${Unnamed_Game_BIN}/$(Platform)/release")
-set_target_properties(Unnamed_Game PROPERTIES ARCHIVE_OUTPUT_DIRECTORY_PRODUCTION "${Unnamed_Game_BIN}/$(Platform)/production")
+set_target_properties(Unit_Tests PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${Unit_Tests_BIN}")
+set_target_properties(Unit_Tests PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG "${Unit_Tests_BIN}/$(Platform)/debug")
+set_target_properties(Unit_Tests PROPERTIES RUNTIME_OUTPUT_DIRECTORY_PROFILE "${Unit_Tests_BIN}/$(Platform)/profile")
+set_target_properties(Unit_Tests PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE "${Unit_Tests_BIN}/$(Platform)/release")
+set_target_properties(Unit_Tests PROPERTIES RUNTIME_OUTPUT_DIRECTORY_PRODUCTION "${Unit_Tests_BIN}/$(Platform)/production")
+set_target_properties(Unit_Tests PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${Unit_Tests_BIN}")
+set_target_properties(Unit_Tests PROPERTIES LIBRARY_OUTPUT_DIRECTORY_DEBUG "${Unit_Tests_BIN}/$(Platform)/debug")
+set_target_properties(Unit_Tests PROPERTIES LIBRARY_OUTPUT_DIRECTORY_PROFILE "${Unit_Tests_BIN}/$(Platform)/profile")
+set_target_properties(Unit_Tests PROPERTIES LIBRARY_OUTPUT_DIRECTORY_RELEASE "${Unit_Tests_BIN}/$(Platform)/release")
+set_target_properties(Unit_Tests PROPERTIES LIBRARY_OUTPUT_DIRECTORY_PRODUCTION "${Unit_Tests_BIN}/$(Platform)/production")
+set_target_properties(Unit_Tests PROPERTIES ARCHIVE_OUTPUT_DIRECTORY "${Unit_Tests_BIN}")
+set_target_properties(Unit_Tests PROPERTIES ARCHIVE_OUTPUT_DIRECTORY_DEBUG "${Unit_Tests_BIN}/$(Platform)/debug")
+set_target_properties(Unit_Tests PROPERTIES ARCHIVE_OUTPUT_DIRECTORY_PROFILE "${Unit_Tests_BIN}/$(Platform)/profile")
+set_target_properties(Unit_Tests PROPERTIES ARCHIVE_OUTPUT_DIRECTORY_RELEASE "${Unit_Tests_BIN}/$(Platform)/release")
+set_target_properties(Unit_Tests PROPERTIES ARCHIVE_OUTPUT_DIRECTORY_PRODUCTION "${Unit_Tests_BIN}/$(Platform)/production")
 
-set_target_properties(Unnamed_Game PROPERTIES INTERMEDIATE_DIRECTORY "${Unnamed_Game_TMP}")
-set_target_properties(Unnamed_Game PROPERTIES INTERMEDIATE_DIRECTORY_DEBUG "${Unnamed_Game_TMP}/$(Platform)/debug")
-set_target_properties(Unnamed_Game PROPERTIES INTERMEDIATE_DIRECTORY_PROFILE "${Unnamed_Game_TMP}/$(Platform)/profile")
-set_target_properties(Unnamed_Game PROPERTIES INTERMEDIATE_DIRECTORY_RELEASE "${Unnamed_Game_TMP}/$(Platform)/release")
-set_target_properties(Unnamed_Game PROPERTIES INTERMEDIATE_DIRECTORY_PRODUCTION "${Unnamed_Game_TMP}/$(Platform)/production")
+set_target_properties(Unit_Tests PROPERTIES INTERMEDIATE_DIRECTORY "${Unit_Tests_TMP}")
+set_target_properties(Unit_Tests PROPERTIES INTERMEDIATE_DIRECTORY_DEBUG "${Unit_Tests_TMP}/$(Platform)/debug")
+set_target_properties(Unit_Tests PROPERTIES INTERMEDIATE_DIRECTORY_PROFILE "${Unit_Tests_TMP}/$(Platform)/profile")
+set_target_properties(Unit_Tests PROPERTIES INTERMEDIATE_DIRECTORY_RELEASE "${Unit_Tests_TMP}/$(Platform)/release")
+set_target_properties(Unit_Tests PROPERTIES INTERMEDIATE_DIRECTORY_PRODUCTION "${Unit_Tests_TMP}/$(Platform)/production")
 
 #links engine and rendering engine
-target_link_libraries(Unnamed_Game ENG UCPAL)
+target_link_libraries(Unit_Tests ENG UCPAL)

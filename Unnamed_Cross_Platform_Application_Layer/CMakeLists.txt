@@ -27,7 +27,7 @@ set(CMAKE_SHARED_LINKER_FLAGS_PROFILE "/debug /INCREMENTAL")
 set(CMAKE_SHARED_LINKER_FLAGS_RELEASE "/INCREMENTAL:NO")
 set(CMAKE_SHARED_LINKER_FLAGS_PRODUCTION "/INCREMENTAL:NO")
 
-set(UCPAL_DIR ${Unnamed_Game_SOURCE_DIR}/Unnamed_Cross_Platform_Application_Layer)
+set(UCPAL_DIR ${Unit_Tests_SOURCE_DIR}/Unnamed_Cross_Platform_Application_Layer)
 set(UCPAL_BIN ${UCPAL_DIR}/bin)
 set(UCPAL_TMP ${UCPAL_DIR}/tmp)
 
@@ -57,14 +57,14 @@ include_directories(
 )
 
 #adds the library
-add_library(UCPAL SHARED ${HDRS} ${SRCS})
+add_library(UCPAL STATIC ${HDRS} ${SRCS})
 set_target_properties(UCPAL PROPERTIES LINKER_LANGUAGE CXX)
 
-set_target_properties(UCPAL PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${Unnamed_Game_SOURCE_DIR}/bin")
-set_target_properties(UCPAL PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG "${Unnamed_Game_SOURCE_DIR}/bin/$(Platform)/debug")
-set_target_properties(UCPAL PROPERTIES RUNTIME_OUTPUT_DIRECTORY_PROFILE "${Unnamed_Game_SOURCE_DIR}/bin/$(Platform)/profile")
-set_target_properties(UCPAL PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE "${Unnamed_Game_SOURCE_DIR}/bin/$(Platform)/release")
-set_target_properties(UCPAL PROPERTIES RUNTIME_OUTPUT_DIRECTORY_PRODUCTION "${Unnamed_Game_SOURCE_DIR}/bin/$(Platform)/production")
+set_target_properties(UCPAL PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${Unit_Tests_SOURCE_DIR}/bin")
+set_target_properties(UCPAL PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG "${Unit_Tests_SOURCE_DIR}/bin/$(Platform)/debug")
+set_target_properties(UCPAL PROPERTIES RUNTIME_OUTPUT_DIRECTORY_PROFILE "${Unit_Tests_SOURCE_DIR}/bin/$(Platform)/profile")
+set_target_properties(UCPAL PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE "${Unit_Tests_SOURCE_DIR}/bin/$(Platform)/release")
+set_target_properties(UCPAL PROPERTIES RUNTIME_OUTPUT_DIRECTORY_PRODUCTION "${Unit_Tests_SOURCE_DIR}/bin/$(Platform)/production")
 set_target_properties(UCPAL PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${UCPAL_BIN}")
 set_target_properties(UCPAL PROPERTIES LIBRARY_OUTPUT_DIRECTORY_DEBUG "${UCPAL_BIN}/$(Platform)/debug")
 set_target_properties(UCPAL PROPERTIES LIBRARY_OUTPUT_DIRECTORY_PROFILE "${UCPAL_BIN}/$(Platform)/profile")
@@ -85,4 +85,4 @@ set_target_properties(UCPAL PROPERTIES INTERMEDIATE_DIRECTORY_PRODUCTION "${UCPA
 #links required libraries
 target_link_libraries(UCPAL winmm.lib ${OPENGL_LIBRARIES})
 
-install (TARGETS UCPAL RUNTIME DESTINATION "${Unnamed_Game_SOURCE_DIR}/bin/$(Platform)/$(Configuration)")
+#install (TARGETS UCPAL RUNTIME DESTINATION "${Unit_Tests_SOURCE_DIR}/bin/$(Platform)/$(Configuration)")

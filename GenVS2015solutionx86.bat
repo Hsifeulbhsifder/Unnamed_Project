@@ -14,5 +14,5 @@ for /r %%x in (*.sln) do (
 echo Opening %%x
 "%%x"
 )
-delay 2000
+TIMEOUT 10
 exit
