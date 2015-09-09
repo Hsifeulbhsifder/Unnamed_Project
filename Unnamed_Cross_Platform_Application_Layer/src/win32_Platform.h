@@ -30,7 +30,6 @@
 #undef PlatformErrorBox
 #endif
 
-
 #define VARARGS __cdecl
 #define CDECL __cdecl
 #define STDCALL __stdcall

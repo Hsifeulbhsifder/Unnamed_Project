@@ -139,6 +139,10 @@ intern B32 AllocateNewBlock(void* mem, U64 sizeBytes) {
 	return False;
 }
 
+intern void GrowTransientHeap() {
+	//TODO: Complete this as well as defragmentation once proper handle system is implemented
+}
+
 intern void Reset() {
 	memset(grm->permanentStorage, 0, TotalMemSize(grm->permanentStorageSize));
 	memset(grm->transientStorage, 0, TotalMemSize(grm->transientStorageSize));

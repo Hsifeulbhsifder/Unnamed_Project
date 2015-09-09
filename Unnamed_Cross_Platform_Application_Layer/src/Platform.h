@@ -1,10 +1,6 @@
 #ifndef UCPAL_PLATFORM_H
 #define UCPAL_PLATFORM_H
 
-#ifdef __cplusplus
-//extern "C" {
-#endif
-
 #ifdef _WIN32 //TODO: declare this in cmake
 #define W32
 #ifdef _WIN64
@@ -50,6 +46,8 @@ typedef unsigned __int64 U64;
 
 typedef float F32;
 typedef double F64;
+
+typedef char* CSTR;
 
 //CONSTANTS
 #define PI (3.1415926535897932f)
@@ -166,14 +164,29 @@ typedef double F64;
 		void* transientStorage;
 	};
 
+
+	template <typename T>
+	struct DLLEXPORT HDL {
+		T* ptr; //TODO: 32-bit support
+	};
+
+	struct DLLEXPORT ASTR {
+		CSTR str;
+		U32 len;
+
+
+
+	};
+
 	INLINEFORCE Gamepad* GetGamepad(InputBuffer* input, U32 gamepadIndex);
+	
 
 
 	/************************************************************************/
 	/* Platform defined functions                                           */
 	/************************************************************************/
 
-	DLLEXPORT B32 CreatePlatformWindow();
+	DLLEXPORT B32 CreatePlatformWindow(const WindowDimensions& size);
 
 
 
@@ -193,9 +206,11 @@ typedef double F64;
 
 	DLLEXPORT void TerminateRuntimeMemory(RuntimeMemory* runtimeMemory);
 
+	/************************************************************************/
+	/* String functions                                                     */
+	/************************************************************************/
 
-#ifdef __cplusplus
-//} //extern "C"
-#endif
+
+
 
 #endif
